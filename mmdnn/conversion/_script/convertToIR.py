@@ -139,7 +139,7 @@ def _get_parser():
     parser.add_argument(
         '--srcFramework', '-f',
         type=_text_type,
-        choices=["caffe", "caffe2", "cntk", "mxnet", "keras", "tensorflow", 'tf', 'torch', 'torch7', 'onnx', 'darknet', 'coreml', 'pytorch'],
+        choices=["caffe", "caffe2", "cntk", "mxnet", "keras", "tf-keras", "tensorflow", 'tf', 'torch', 'torch7', 'onnx', 'darknet', 'coreml', 'pytorch'],
         help="Source toolkit name of the model to be converted.")
 
     parser.add_argument(

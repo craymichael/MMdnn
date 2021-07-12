@@ -11,6 +11,9 @@ def _convert(args):
     elif args.framework == 'keras':
         raise NotImplementedError("Destination [Keras] is not implemented yet.")
 
+    elif args.framework == 'tf-keras':
+        raise NotImplementedError("Destination [TF-Keras] is not implemented yet.")
+
     elif args.framework == 'tensorflow':
         raise NotImplementedError("Destination [Tensorflow] is not implemented yet.")
 

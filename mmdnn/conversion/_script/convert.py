@@ -14,7 +14,7 @@ def _get_parser():
     parser.add_argument(
         '--srcFramework', '-sf',
         type=_text_type,
-        choices=["caffe", "caffe2", "cntk", "mxnet", "keras", "tensorflow", 'tf', 'pytorch'],
+        choices=["caffe", "caffe2", "cntk", "mxnet", "keras", "tf-keras", "tensorflow", 'tf', 'pytorch'],
         help="Source toolkit name of the model to be converted.")
     parser.add_argument(
         '--inputWeight', '-iw',

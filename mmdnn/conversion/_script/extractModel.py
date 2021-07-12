@@ -30,6 +30,10 @@ def extract_model(args):
         from mmdnn.conversion.examples.keras.extractor import keras_extractor
         extractor = keras_extractor()
 
+    elif args.framework == 'tf-keras':
+        from mmdnn.conversion.examples.tf_keras.extractor import tf_keras_extractor
+        extractor = tf_keras_extractor()
+
     elif args.framework == 'tensorflow' or args.framework == 'tf':
         from mmdnn.conversion.examples.tensorflow.extractor import tensorflow_extractor
         extractor = tensorflow_extractor()
@@ -92,7 +96,7 @@ def _main():
         '--framework', '-f',
         type=_text_type,
         required=True,
-        choices=["caffe", "cntk", "mxnet", "keras", "tensorflow", 'tf', 'pytorch', 'darknet', 'coreml'],
+        choices=["caffe", "cntk", "mxnet", "keras", "tf-keras", "tensorflow", 'tf', 'pytorch', 'darknet', 'coreml'],
         help="Framework name")
 
     parser.add_argument(
