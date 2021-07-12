@@ -146,7 +146,7 @@ class TFKeras2Parser(Parser):
                 func = getattr(self, "rename_" + node_type)
                 func(current_node)
             else:
-                print("KerasParser has not supported operator [%s]." % (node_type))
+                print("TFKerasParser has not supported operator [%s]." % (node_type))
                 self.rename_UNKNOWN(current_node)
 
         _K.clear_session()
@@ -784,6 +784,10 @@ class TFKeras2Parser(Parser):
         assign_IRnode_values(IR_node, {'max_value' : max_value})
         self.convert_inedge(source_node, IR_node)
 
+    def rename_Softmax(self, source_node):
+        IR_node = self.IR_graph.node.add()
+        TFKeras2Parser._copy_and_reop(source_node, IR_node, 'Softmax')
+        self.convert_inedge(source_node, IR_node)
 
     def rename_space_to_depth_x2(self, source_node):
         IR_node = self.IR_graph.node.add()
