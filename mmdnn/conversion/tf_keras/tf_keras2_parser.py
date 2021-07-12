@@ -155,7 +155,11 @@ class TFKeras2Parser(Parser):
     @staticmethod
     def _set_output_shape(source_node, IR_node):
         shape = graph_pb2.TensorShape()
-        for dim in source_node.layer.output_shape:
+        source_output_shape = source_node.layer.output_shape
+        if isinstance(source_output_shape, list):
+            assert len(source_output_shape) == 1, f'unsupported: {source_output_shape}'
+            source_output_shape = source_output_shape[0]
+        for dim in source_output_shape:
             new_dim = shape.dim.add()
             new_dim.size = dim if dim else -1
 
