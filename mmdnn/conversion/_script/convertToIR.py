@@ -45,6 +45,15 @@ def _convert(args):
         from mmdnn.conversion.keras.keras2_parser import Keras2Parser
         parser = Keras2Parser(model)
 
+    elif args.srcFramework == 'tf-keras':
+        if args.network != None:
+            model = (args.network, args.weights)
+        else:
+            model = args.weights
+
+        from mmdnn.conversion.tf_keras.tf_keras2_parser import TFKeras2Parser
+        parser = TFKeras2Parser(model)
+
     elif args.srcFramework == 'tensorflow' or args.srcFramework == 'tf':
         assert args.network or args.weights
         if not args.network:

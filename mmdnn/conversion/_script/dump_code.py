@@ -16,6 +16,8 @@ def dump_code(framework, network_filepath, weight_filepath, dump_filepath, dump_
         from mmdnn.conversion.cntk.saver import save_model
     elif framework == 'keras':
         from mmdnn.conversion.keras.saver import save_model
+    elif framework == 'tf-keras':
+        from mmdnn.conversion.tf_keras.saver import save_model
     elif framework == 'mxnet':
         from mmdnn.conversion.mxnet.saver import save_model
     elif framework == 'pytorch':

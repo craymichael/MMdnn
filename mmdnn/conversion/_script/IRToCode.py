@@ -17,6 +17,10 @@ def _convert(args):
         from mmdnn.conversion.keras.keras2_emitter import Keras2Emitter
         emitter = Keras2Emitter((args.IRModelPath, args.IRWeightPath))
 
+    elif args.dstFramework == 'tf-keras':
+        from mmdnn.conversion.tf_keras.tf_keras2_emitter import TFKeras2Emitter
+        emitter = TFKeras2Emitter((args.IRModelPath, args.IRWeightPath))
+
     elif args.dstFramework == 'tensorflow':
         from mmdnn.conversion.tensorflow.tensorflow_emitter import TensorflowEmitter
         if args.IRWeightPath is None:
