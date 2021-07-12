@@ -4,6 +4,7 @@
 #----------------------------------------------------------------------------------------------
 import os
 import tensorflow.keras as _keras
+from tensorflow import nest
 from mmdnn.conversion.common.DataStructure.graph import GraphNode, Graph
 
 
@@ -45,7 +46,7 @@ class TFKeras2Graph(Graph):
             self.layer_map[layer.name] = TFKeras2GraphNode(layer)
             self.layer_name_map[layer.name] = layer.name
             for node in layer._inbound_nodes:
-                for pred in node.inbound_layers:
+                for pred in nest.flatten(node.inbound_layers):
                     if pred.name not in self.layer_map:
                         self.layer_map[pred.name] = TFKeras2GraphNode(pred)
                         self.layer_name_map[pred.name] = pred.name
