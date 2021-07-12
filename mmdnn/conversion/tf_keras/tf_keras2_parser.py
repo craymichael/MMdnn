@@ -180,7 +180,11 @@ class TFKeras2Parser(Parser):
     @staticmethod
     def _copy_shape(source_node, target_node):
         if hasattr(source_node, "output_shape"):
-            for dim in source_node.output_shape:
+            source_output_shape = source_node.output_shape
+            if isinstance(source_output_shape, list):
+                assert len(source_output_shape) == 1, f'unsupported: {source_output_shape}'
+                source_output_shape = source_output_shape[0]
+            for dim in source_output_shape:
                 new_dim = target_node.attr["shape"].shape.dim.add()
                 new_dim.size = -1 if dim == None else dim
 
